@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포켓몬 도감 계산기</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        :root {
+            --pokedex-red: #dc0a2d;
+            --pokedex-dark-red: #8b0000;
+            --screen-blue: #51adcf;
+            --button-blue: #28aaec;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+
+        .pokedex {
+            background-color: var(--pokedex-red);
+            width: 350px;
+            padding: 30px;
+            border-radius: 20px 20px 20px 60px;
+            box-shadow: 10px 10px 0px #8b0000;
+            border: 4px solid black;
+        }
+
+
+        .top-lamps {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .big-lamp {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, white, #28aaec);
+            border: 4px solid white;
+            border-radius: 50%;
+        }
+
+        .screen-container {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 3px solid black;
+            margin-bottom: 20px;
+        }
+        #display {
+            background-color: #97af81; 
+            height: 60px;
+            border-radius: 5px;
+            border: 2px inset rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 10px;
+            font-size: 20px;
+            overflow: hidden;
+            color: #1a1a1a;
+        }
+
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            aspect-ratio: 1;
+            border: 2px solid black;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s;
+            position: relative;
+            background-color: #eee;
+        }
+
+        button:active {
+            transform: translateY(4px);
+        }
+
+        button img {
+            width: 35px;
+            height: 35px;
+        }
+
+        /* 특수 버튼 색상 */
+        .operator { background-color: #ffcc00; } /* 전기 타입 노란색 */
+        .clear { background-color: #ff5a5a; grid-column: span 2; aspect-ratio: auto; }
+        .equal { background-color: #4dad5b; grid-column: span 2; aspect-ratio: auto; } /* 풀 타입 초록색 */
+
+        .pokemon-name {
+            font-size: 6px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="pokedex">
+    <div class="top-lamps">
+        <div class="big-lamp"></div>
+        <div style="width:15px; height:15px; background:red; border-radius:50%; border:2px solid black;"></div>
+        <div style="width:15px; height:15px; background:yellow; border-radius:50%; border:2px solid black;"></div>
+        <div style="width:15px; height:15px; background:green; border-radius:50%; border:2px solid black;"></div>
+    </div>
+
+    <div class="screen-container">
+        <div id="display">0</div>
+    </div>
+
+    <div class="buttons">
+        <!-- 7: 꼬부기 -->
+        <button onclick="append(7)">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png">
+            <div class="pokemon-name">7</div>
+        </button>
+        <!-- 8: 파이리 -->
+        <button onclick="append(8)">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png">
+            <div class="pokemon-name">8</div>
+        </button>
+        <!-- 9: 이상해씨 -->
+        <button onclick="append(9)">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png">
+            <div class="pokemon-name">9</div>
+        </button>
+        <button class="operator" onclick="append('/')">÷</button>
+
+        <!-- 4: 푸린 -->
+        <button onclick="append(4)">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png">
+            <div class="pokemon-name">4</div>
+        </button>
+        <!-- 5: 피카츄 -->
+        <button onclick="append(5)">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png">
+            <div class="pokemon-name">5</div>
+        </button>
+        <!-- 6: 이브이 -->
+        <button onclick="append(6)">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png">
+            <div class="pokemon-name">6</div>
+        </button>
+        <button class="operator" onclick="append('*')">×</button>
+
+        <!-- 1: 잠만보 -->
+        <button onclick="append(1)">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png">
+            <div class="pokemon-name">1</div>
+        </button>
+        <!-- 2: 팬텀 -->
+        <button onclick="append(2)">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png">
+            <div class="pokemon-name">2</div>
+        </button>
+        <!-- 3: 뮤 -->
+        <button onclick="append(3)">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png">
+            <div class="pokemon-name">3</div>
+        </button>
+        <button class="operator" onclick="append('-')">-</button>
+
+        <!-- 0: 루카리오 -->
+        <button onclick="append(0)">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png">
+            <div class="pokemon-name">0</div>
+        </button>
+        <button onclick="append('.')">.</button>
+        <button class="operator" onclick="append('+')">+</button>
+        <button class="clear" onclick="clearDisplay()">CLEAR</button>
+        <button class="equal" onclick="calculate()">=</button>
+    </div>
+</div>
+
+<script>
+    const display = document.getElementById('display');
+    let currentInput = '';
+
+    function append(value) {
+        if (currentInput === '0' && value !== '.') {
+            currentInput = value.toString();
+        } else {
+            currentInput += value;
+        }
+        updateDisplay();
+    }
+
+    function clearDisplay() {
+        currentInput = '0';
+        updateDisplay();
+    }
+
+    function calculate() {
+        try {
+            // eval은 간단한 계산기용이며, 실제 서비스에선 수식 파서를 권장합니다.
+            const result = eval(currentInput);
+            currentInput = result.toString();
+            updateDisplay();
+            
+            // 결과가 나오면 특별한 효과음이나 알림을 줄 수 있습니다.
+            console.log("포켓몬 계산 완료!");
+        } catch (error) {
+            currentInput = 'ERROR';
+            updateDisplay();
+            setTimeout(clearDisplay, 1500);
+        }
+    }
+
+    function updateDisplay() {
+        display.innerText = currentInput;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button{
+        font-size: 30px;
+    }
+</style>
+<body>
+    <table border="1">
+        <tr>
+            <td colspan="4"><input type="text" id="input"></td>
+        </tr>
+        <tbody id="buttons"></tbody>
+    </table>
+    <script>
+        input = document.getElementById("input")
+        buttons = document.getElementById("buttons")
+        ex = ""
+        btnLayout=[
+            [7,8,9,'+'],
+            [4,5,6,'-'],
+            [1,2,3,'*'],
+            [0,'C','=','/']
+        ]
+        btnLayout.forEach(row =>{
+            tr = document.createElement('tr')   // 태그 생성
+            row.forEach(text=>{
+                td = document.createElement('td')
+                btn = document.createElement('button')
+                btn.textContent = text
+                btn.onclick=() => onClick(text)
+                td.appendChild(btn)
+                tr.appendChild(td)
+            })
+            buttons.appendChild(tr)
+        })
+
+        onClick = (val) =>{
+            if (val == '='){
+                ex = eval(ex)
+            }
+            else if(val == 'C'){
+                ex = ex.substring(0,ex.length-1)
+            }
+            else{
+                ex += val
+            }
+            input.value = ex
+        }
+</script>
+</body>
+</html>

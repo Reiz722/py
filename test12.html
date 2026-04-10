@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>식 : 45+66*34</h3>
+    <div id = "su">숫자</div>
+    <div id = "buho">부호</div>
+    <div id = "sum">합</div>
+    <button type="button" onclick="run()">버튼</button>
+</body>
+<script>
+    function run(){
+        su = "45+66*34"
+        // match : 검색(추출) , 정규표현식=기호를 바탕으로 검색
+        num = su.match(/\d+/g) // \d:숫자 , +:반복
+        ho = su.match(/[^\d]+/g) // ^: 반대 , ^\d:정수가 아닌
+
+        document.getElementById("su").innerHTML = "<b>숫자 : </b>" + num.join(" ")
+        document.getElementById("buho").innerHTML = "<b>부호 : </b>" + ho
+        s = document.getElementById("sum")
+        s.innerHTML = "<b>합계 : </b>" + eval(su)
+        
+    }
+    
+</script>
+</html>

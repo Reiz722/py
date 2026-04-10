@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    tr{
+        background-color: rgba(134, 165, 134, 0.226);
+    }
+</style>
+<body>
+    <script>
+        num = 1
+        t = "<table border=1>"
+        ar = ["red","blue","skyblue","#fdc8c8","#ff00ff","#00ff00"]
+        for(i=0;i<5;i++){
+            t+="<tr>"
+            for(j=0;j<5;j++){
+                x = Math.floor((Math.random()*6))   // 0 ~6
+                t+="<td bgcolor="+ar[x]+">"+ num++ +"</td>"
+            }
+            t+="</tr>"
+        }
+        t +="</table>"
+
+        document.write(t)
+    </script>
+</body>
+</html>

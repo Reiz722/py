@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onclick="game(1)"><img src="1.PNG" width="200" height="200"></button>
+    <button type="button" onclick="game(2)"><img src="2.PNG" width="200" height="200"></button>
+    <button type="button" onclick="game(3)"><img src="3.PNG" width="200" height="200"></button>
+
+    <script>
+        function game(saram){
+            com = Math.floor(Math.random()*3)+1
+            console.log(com)
+            if(saram == com){
+                document.write("둘다 비겼습니다.")
+            }
+            else if((saram==1&&com==3)||(saram==2&&com==1)||(saram==3&&com==2)){
+                document.write("사람이 이겼습니다!!")
+            }
+            else{
+                document.write("컴퓨터가 이겼습니다!!!<br>")
+                document.write("<img src=comwin.png>")
+            }
+        }
+
+    </script>
+</body>
+</html>

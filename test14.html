@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .ip{
+        text-align: right;
+    }
+</style>
+<body>
+    <table border="1">
+        <tr>
+            <td colspan="4"><input type="text" id="inputbox" class="ip"></td>
+        </tr>
+        <tr>
+            <td><button type="button" id="su7">7</button></td>
+            <td><button type="button" id="su8">8</button></td>
+            <td><button type="button" id="su9">9</button></td>
+            <td><button type="button" id="plus">+</button></td>
+        </tr>
+        <tr>
+            <td><button type="button" id="su4">4</button></td>
+            <td><button type="button" id="su5">5</button></td>
+            <td><button type="button" id="su6">6</button></td>
+            <td><button type="button" id="minus">-</button></td>
+        </tr>
+        <tr>
+            <td><button type="button" id="su1">1</button></td>
+            <td><button type="button" id="su2">2</button></td>
+            <td><button type="button" id="su3">3</button></td>
+            <td><button type="button" id="divide">/</button></td>
+        </tr>
+        <tr>
+            <td><button type="button" id="su0">0</button></td>
+            <td colspan="2"><button type="button" id="sum">계산</button></td>
+            <td><button type="button" id="mul">*</button></td>
+        </tr>
+    </table>
+
+
+    <script>
+        document.getElementById("su1").addEventListener('click',on1)
+        document.getElementById("su2").addEventListener('click',on2)
+        document.getElementById("su3").addEventListener('click',on3)
+        document.getElementById("su4").addEventListener('click',on4)
+        document.getElementById("su5").addEventListener('click',on5)
+        document.getElementById("su6").addEventListener('click',on6)
+        document.getElementById("su7").addEventListener('click',on7)
+        document.getElementById("su8").addEventListener('click',on8)
+        document.getElementById("su9").addEventListener('click',on9)
+        document.getElementById("su0").addEventListener('click',on0)
+
+        document.getElementById("plus").addEventListener('click',onplus)
+        document.getElementById("minus").addEventListener('click',onminus)
+        document.getElementById("divide").addEventListener('click',ondivide)
+        document.getElementById("mul").addEventListener('click',onmul)
+
+        document.getElementById("sum").addEventListener('click',sum)
+
+        inputbox = document.getElementById("inputbox")
+        
+        ar=[]
+        function sum(){
+            inputbox.value = eval(inputbox.value)
+            ar=[]
+        }
+        function onplus(){
+            ar.push('+')
+            inputbox.value = ar.join("")
+        }
+        function onminus(){
+            ar.push('-')
+            inputbox.value = ar.join("")
+        }
+        function ondivide(){
+            ar.push('/')
+            inputbox.value = ar.join("")
+        }
+        function onmul(){
+            ar.push('*')
+            inputbox.value = ar.join("")
+        }
+        
+        function on1(){
+            ar.push(1)
+            inputbox.value = ar.join("")
+        }
+        function on2(){
+            ar.push(2)
+            inputbox.value = ar.join("")
+        }
+        function on3(){
+            ar.push(3)
+            inputbox.value = ar.join("")
+        }
+        function on4(){
+            ar.push(4)
+            inputbox.value = ar.join("")
+        }
+        function on5(){
+            ar.push(5)
+            inputbox.value = ar.join("")
+        }
+        function on6(){
+            ar.push(6)
+            inputbox.value = ar.join("")
+        }
+        function on7(){
+            ar.push(7)
+            inputbox.value = ar.join("")
+        }
+        function on8(){
+            ar.push(8)
+            inputbox.value = ar.join("")
+        }
+        function on9(){
+            ar.push(9)
+            inputbox.value = ar.join("")
+        }
+        function on0(){
+            ar.push(0)
+            inputbox.value = ar.join("")
+        }
+
+
+    </script>
+</body>
+</html>

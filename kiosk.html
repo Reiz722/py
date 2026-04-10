@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .menu{
+        width: 200px;
+        height: 300px;
+    }
+</style>
+<body>
+    <table border="1">
+        <tr>
+            <td colspan="4">스타벅스 메뉴판</td>
+        </tr>
+        <tr>
+            <td><img src="aa_hot.png" class="menu" id="aaimg"></td>
+            <td>
+                <input type="checkbox" id="aa_shot" onclick="aa_update('aa_shot')">샷추가<br>
+                <input type="checkbox" id="aa_syrup" onclick="aa_update('aa_syrup')">시럽<br>
+                <input type="checkbox" id="aa_milk" onclick="aa_update('aa_milk')">우유<br>
+                <input type="checkbox" id="aa_whipped" onclick="aa_update('aa_whipped')">휘핑<br>
+            </td>
+            <td><img src="lt_hot.png" class="menu" id="ltimg"></td>
+            <td>
+                <input type="checkbox" id="lt_shot" onclick="lt_update('lt_shot')">샷추가<br>
+                <input type="checkbox" id="lt_syrup" onclick="lt_update('lt_syrup')">시럽<br>
+                <input type="checkbox" id="lt_milk" onclick="lt_update('lt_milk')">우유<br>
+                <input type="checkbox" id="lt_whipped" onclick="lt_update('lt_whipped')">휘핑<br>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">아메리카노</td>
+            <td colspan="2">카페라떼</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="radio" name="aa_type" checked="checked" onclick="aasw('hot')">HOT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="aa_type" onclick="aasw('ice')">ICE
+            </td>
+            <td colspan="2">
+                <input type="radio" name="lt_type" checked="checked" onclick="ltsw('hot')">HOT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="lt_type" onclick="ltsw('ice')">ICE
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="button" onclick="aacnt('minus')">-</button>
+                <input type="text" value="1" id="aacount">
+                <button type="button" onclick="aacnt('plus')">+</button>
+            </td>
+            <td colspan="2">
+                <button type="button" onclick="ltcnt('minus')">-</button>
+                <input type="text" value="1" id="ltcount">
+                <button type="button" onclick="ltcnt('plus')">+</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="text" id="aamoney" value="4500"></td>
+            <td colspan="2"><input type="text" id="ltmoney" value="5000"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="text" id="aacash" value="전체가격"></td>
+            <td colspan="2"><input type="text" id="ltcash" value="전체가격"></td>
+        </tr>
+    </table>
+
+    <script>
+        function aacnt(x){
+            cnt = Number(document.getElementById("aacount").value)
+            if(x=="plus"){
+                cnt++
+            }
+            else{
+                cnt--
+                if(cnt <0){
+                    cnt = 0 
+                }
+            }
+            document.getElementById("aacount").value = cnt
+            document.getElementById("aacash").value = Number(document.getElementById("aamoney").value) *cnt            
+        }
+        function ltcnt(x){
+            cnt = Number(document.getElementById("ltcount").value)
+            if(x=="plus"){
+                cnt++
+            }
+            else{
+                cnt--
+                if(cnt <0){
+                    cnt = 0 
+                }
+            }
+            document.getElementById("ltcount").value = cnt
+            document.getElementById("ltcash").value = Number(document.getElementById("ltmoney").value) *cnt            
+        }
+        function aasw(v){
+            if(v == "hot"){
+                document.getElementById("aaimg").src = "aa_hot.png"
+                cash = 4500
+                document.getElementById("aa_shot").checked=false
+                document.getElementById("aa_syrup").checked=false
+                document.getElementById("aa_milk").checked=false
+                document.getElementById("aa_whipped").checked=false
+                document.getElementById("aacount").value = 1
+                document.getElementById("aacash").value = "전체가격"
+
+            }
+            else{
+                document.getElementById("aaimg").src = "aa_ice.png"
+                cash = 5000
+                document.getElementById("aa_shot").checked=false
+                document.getElementById("aa_syrup").checked=false
+                document.getElementById("aa_milk").checked=false
+                document.getElementById("aa_whipped").checked=false
+                document.getElementById("aacount").value = 1
+                document.getElementById("aacash").value = "전체가격"
+                
+            }
+            document.getElementById("aamoney").value = cash
+        }
+        function ltsw(v){
+            if(v == "hot"){
+                document.getElementById("ltimg").src = "lt_hot.png"
+                cash = 5000
+                document.getElementById("lt_shot").checked=false
+                document.getElementById("lt_syrup").checked=false
+                document.getElementById("lt_milk").checked=false
+                document.getElementById("lt_whipped").checked=false
+                document.getElementById("ltcount").value = 1
+                document.getElementById("ltcash").value = "전체가격"
+            }
+            else{
+                document.getElementById("ltimg").src = "lt_ice.png"
+                cash = 5500
+                document.getElementById("lt_shot").checked=false
+                document.getElementById("lt_syrup").checked=false
+                document.getElementById("lt_milk").checked=false
+                document.getElementById("lt_whipped").checked=false
+                document.getElementById("ltcount").value = 1
+                document.getElementById("ltcash").value = "전체가격"
+                
+            }
+            document.getElementById("ltmoney").value = cash
+        }
+        function aa_update(chk){
+            cash = Number(document.getElementById("aamoney").value)
+            if(chk=="aa_shot"){
+                if(document.getElementById("aa_shot").checked){
+                    cash += 500
+                }
+                else{
+                    cash -= 500
+                }
+            }
+            if(chk=="aa_syrup"){
+                if(document.getElementById("aa_syrup").checked){
+                    cash += 800
+                }
+                else{
+                    cash -= 800
+                }
+            }
+            if(chk=="aa_milk"){
+                if(document.getElementById("aa_milk").checked){
+                    cash += 300
+                }
+                else{
+                    cash -= 300
+                }
+            }
+            if(chk=="aa_whipped"){
+                if(document.getElementById("aa_whipped").checked){
+                    cash += 100
+                }
+                else{
+                    cash -= 100
+                }
+            }
+            document.getElementById("aamoney").value = cash
+        }
+        function lt_update(chk){
+            cash = Number(document.getElementById("ltmoney").value)
+            if(chk=="lt_shot"){
+                if(document.getElementById("lt_shot").checked){
+                    cash += 500
+                }
+                else{
+                    cash -= 500
+                }
+            }
+            if(chk=="lt_syrup"){
+                if(document.getElementById("lt_syrup").checked){
+                    cash += 800
+                }
+                else{
+                    cash -= 800
+                }
+            }
+            if(chk=="lt_milk"){
+                if(document.getElementById("lt_milk").checked){
+                    cash += 300
+                }
+                else{
+                    cash -= 300
+                }
+            }
+            if(chk=="lt_whipped"){
+                if(document.getElementById("lt_whipped").checked){
+                    cash += 100
+                }
+                else{
+                    cash -= 100
+                }
+            }
+            document.getElementById("ltmoney").value = cash
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>json 가져오기</h2><br>
+    <button onclick="load()">가져오기</button>
+    <div id="result"></div>
+    <script>
+        function load(){
+            fetch("ttt.json")
+            .then(response => response.json())
+            .then(data =>{
+                text ="";
+                for(i=0;i<data.people.length;i++){
+                    text += "이름 : "+data.people[i].name+"<br>"
+                    text += "나이 : "+data.people[i].age+"<br>"
+                    text += "직업 : "+data.people[i].job+"<br>"
+                    text +="------------------------------<br>"
+                }
+                document.getElementById("result").innerHTML = text
+            })
+        }
+    </script>
+</body>
+</html>

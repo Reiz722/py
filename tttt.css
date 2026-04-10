@@ -1,0 +1,10 @@
+tr{
+    background-color: blue;
+}
+td{
+    width: 150px;
+}
+.tdw{
+    width: 300px;
+    background-color: cyan;
+}
